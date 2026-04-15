@@ -616,16 +616,31 @@ struct BootloaderPerformanceRequest {
     BootloaderPerformanceResponse* response;
 }
 
-// Keep IOMMU
+// x86-64 Keep IOMMU
 
-struct KeepIommuResponse {
+struct X8664KeepIommuResponse {
     ulong revision;
 }
 
-struct KeepIommuRequest {
+struct X8664KeepIommuRequest {
     enum id = [commonMagic[0], commonMagic[1], 0x8ebaabe51f490179, 0x2aa86a59ffb4ab0f];
 
     ulong[4] id_ = id;
     ulong revision;
-    KeepIommuResponse* response;
+    X8664KeepIommuResponse* response;
+}
+
+// TSC (Timestamp Counter) Frequency
+
+struct TscFrequencyResponse {
+    ulong revision;
+    ulong frequency;
+}
+
+struct TscFrequencyRequest {
+    enum id = [commonMagic[0], commonMagic[1], 0x10f2ee1d87d195e4, 0xf747a2b78f6ddb31];
+
+    ulong[4] id_ = id;
+    ulong revision;
+    TscFrequencyResponse* response;
 }
